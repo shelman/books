@@ -7,5 +7,6 @@ def search():
     response_content = json.loads(r.content)
     pass
 
+
 if __name__ == "__main__":
     search()
