@@ -2,11 +2,11 @@ import json
 import requests
 
 
-def search():
-    r = requests.get("https://www.googleapis.com/books/v1/volumes?q=nickel+boys")
+def search_books(query):
+    r = requests.get(f"https://www.googleapis.com/books/v1/volumes?q={query}")
     response_content = json.loads(r.content)
-    pass
+    return response_content["items"]
 
 
 if __name__ == "__main__":
-    search()
+    search_books()

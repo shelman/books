@@ -1,0 +1,15 @@
+<!doctype html>
+<html>
+<head>
+  <title>Search</title>
+</head>
+
+<body>
+  <ul>
+    {% for result in results %}
+      <li>{{ result['volumeInfo']['title'] }}</li>
+    {% endfor %}
+  </ul>
+</body>
+
+</html>
