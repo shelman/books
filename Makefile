@@ -5,8 +5,7 @@ clean:
 	rm -rf .venv
 
 initial-setup:
-	rm .git/hooks/pre-commit
-	ln -s hooks/pre-commit .git/hooks/pre-commit
+	./scripts/initialize_git_hooks.sh
 	echo "PYTHONPATH=${PYTHONPATH}:`pwd`" >> .env
 
 venv-dir:
