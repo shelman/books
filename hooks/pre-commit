@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+modified_python_files=$(git diff --cached --name-only --diff-filter=ACMR | grep -E "\.py$")
+
+if [ "$?" -eq "1" ]; then
+  exit 0
+fi
+
+make venv-dev
+pipenv run black (echo ${modified_python_files} | tr "\n" " ")
