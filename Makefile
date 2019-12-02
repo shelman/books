@@ -1,7 +1,7 @@
 clean:
 	rm -rf .venv
 
-setup:
+initial-setup:
 	rm .git/hooks/pre-commit
 	ln -s hooks/pre-commit .git/hooks/pre-commit
 
