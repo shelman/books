@@ -4,9 +4,9 @@ import requests
 
 class Book:
     def __init__(self, json_resp):
-        self.title = json_resp['volumeInfo']['title']
+        self.title = json_resp["volumeInfo"]["title"]
         self.main_author = json_resp["volumeInfo"]["authors"][0]
-        self.smallThumbnail = json_resp['volumeInfo']['imageLinks']['smallThumbnail']
+        self.smallThumbnail = json_resp["volumeInfo"]["imageLinks"]["smallThumbnail"]
 
 
 def dedupe(books):
@@ -27,4 +27,5 @@ def search_books(query):
 
 if __name__ == "__main__":
     import os
+
     search_books(os.argv[1])
