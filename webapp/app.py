@@ -9,9 +9,14 @@ def dedupe(results):
     seen = set()
     filtered = []
     for result in results:
-        if (result['volumeInfo']['authors'][0], result['volumeInfo']['title']) not in seen:
+        if (
+            result["volumeInfo"]["authors"][0],
+            result["volumeInfo"]["title"],
+        ) not in seen:
             filtered.append(result)
-            seen.add((result['volumeInfo']['authors'][0], result['volumeInfo']['title']))
+            seen.add(
+                (result["volumeInfo"]["authors"][0], result["volumeInfo"]["title"])
+            )
     return filtered
 
 
@@ -29,7 +34,7 @@ def attach_routes(app):
 
 def create_app():
     app_directory = os.path.dirname(os.path.realpath(__file__))
-    template_folder = os.path.join(app_directory, 'templates')
+    template_folder = os.path.join(app_directory, "templates")
 
     app = Flask("books", template_folder=template_folder)
     attach_routes(app)
