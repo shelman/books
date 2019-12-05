@@ -5,9 +5,18 @@
 </head>
 
 <body>
-  <ul>
+  <ul style="list-style: none;">
     {% for result in results %}
-      <li>{{ result['volumeInfo']['title'] }}</li>
+      <li style="; margin-bottom: 20px;">
+        <div style="display: inline-block;">
+          <img src="{{ result['volumeInfo']['imageLinks']['smallThumbnail'] }}" />
+        </div>
+        <div style="display: inline-block; margin-left: 10px; vertical-align: top; ">
+          <strong>{{ result['volumeInfo']['title'] }}</strong>
+          <br>
+          {{ result['volumeInfo']['authors'][0] }}
+        </div>
+      </li>
     {% endfor %}
   </ul>
 </body>
