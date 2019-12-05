@@ -2,26 +2,29 @@ import json
 import requests
 
 
-def dedupe(results):
+class Book:
+    def __init__(self, json_resp):
+        self.title = json_resp['volumeInfo']['title']
+        self.main_author = json_resp["volumeInfo"]["authors"][0]
+        self.smallThumbnail = json_resp['volumeInfo']['imageLinks']['smallThumbnail']
+
+
+def dedupe(books):
     seen = set()
     filtered = []
-    for result in results:
-        if (
-            result["volumeInfo"]["authors"][0],
-            result["volumeInfo"]["title"],
-        ) not in seen:
-            filtered.append(result)
-            seen.add(
-                (result["volumeInfo"]["authors"][0], result["volumeInfo"]["title"])
-            )
+    for book in books:
+        if (book.main_author, book.title) not in seen:
+            filtered.append(book)
+            seen.add((book.main_author, book.title))
     return filtered
 
 
 def search_books(query):
     r = requests.get(f"https://www.googleapis.com/books/v1/volumes?q={query}")
     response_content = json.loads(r.content)
-    return dedupe(response_content["items"])
+    return dedupe([Book(json_resp) for json_resp in response_content["items"]])
 
 
 if __name__ == "__main__":
-    search_books()
+    import os
+    search_books(os.argv[1])

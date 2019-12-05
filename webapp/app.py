@@ -19,8 +19,8 @@ class App(Flask):
     def attach_search(self):
         @self.route("/search")
         def search():
-            results = search_books(request.args.get("query"))
-            return render_template("search/search.html", results=results)
+            books = search_books(request.args.get("query"))
+            return render_template("search/search.html", books=books)
 
     def configure(self):
         self.debug = True
