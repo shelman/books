@@ -7,4 +7,4 @@ if [ "$?" -eq "1" ]; then
 fi
 
 make venv-dev
-pipenv run black (echo ${modified_python_files} | tr "\n" " ")
+pipenv run black $(echo ${modified_python_files} | tr "\n" " ")

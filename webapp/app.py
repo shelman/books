@@ -5,6 +5,16 @@ from flask import Flask, render_template, request
 from search.google_books import search_books
 
 
+def dedupe(results):
+    seen = set()
+    filtered = []
+    for result in results:
+        if (result['volumeInfo']['authors'][0], result['volumeInfo']['title']) not in seen:
+            filtered.append(result)
+            seen.add((result['volumeInfo']['authors'][0], result['volumeInfo']['title']))
+    return filtered
+
+
 def attach_routes(app):
     @app.route("/")
     def index():
@@ -13,6 +23,7 @@ def attach_routes(app):
     @app.route("/search")
     def search():
         results = search_books(request.args.get("query"))
+        results = dedupe(results)
         return render_template("search.html", results=results)
 
 
