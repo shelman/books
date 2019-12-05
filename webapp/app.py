@@ -6,7 +6,6 @@ from search.google_books import search_books
 
 
 class App(Flask):
-
     def __init__(self, name, folder, *args, **kwargs):
         template_folder = os.path.join(folder, "pages")
         super().__init__(name, template_folder=template_folder, *args, **kwargs)
