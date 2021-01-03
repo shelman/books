@@ -7,6 +7,7 @@ clean:
 initial-setup:
 	./scripts/initialize_git_hooks.sh
 	echo "PYTHONPATH=${PYTHONPATH}:`pwd`" >> .env
+	brew install pipenv
 
 venv-dir:
 	mkdir -p .venv
